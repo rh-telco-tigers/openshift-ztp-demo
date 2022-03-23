@@ -1,0 +1,15 @@
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: Channel
+metadata:
+  annotations:
+    apps.open-cluster-management.io/reconcile-rate: high
+  name: ztp-repository
+  namespace: ztp-clusters
+spec:
+  type: Git
+  # IMPORTANT: Place your GitHub repository URL here (HTTPS):
+  pathname: 'https://github.com/pandeybk/ztp-demo.git'
+  insecureSkipVerify: false
+  secretRef:
+    name: ztp-repository-auth

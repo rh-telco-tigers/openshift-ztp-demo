@@ -1,0 +1,30 @@
+global:
+  openshift: true
+
+injector:
+  image:
+    repository: "registry.connect.redhat.com/hashicorp/vault-k8s"
+    tag: "0.14.2-ubi"
+
+  agentImage:
+    repository: "registry.connect.redhat.com/hashicorp/vault"
+    tag: "1.9.2-ubi"
+
+server:
+  dataStorage: 
+    enabled: true
+    storageClass: ocs-storagecluster-cephfs
+  # auditStorage:
+  #   enabled: true
+  #   storageClass: local-vs
+  route:
+    enabled: true
+    host: vault-server.apps.ztp-hub.ztp.home.lab
+  image:
+    repository: "registry.connect.redhat.com/hashicorp/vault"
+    tag: "1.9.2-ubi"
+  ha:
+    enabled: true
+    replicas: 3
+    raft:
+      enabled: true

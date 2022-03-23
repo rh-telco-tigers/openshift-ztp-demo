@@ -1,0 +1,32 @@
+---
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+  name: sno4-bmc-secret
+  namespace: sno01-tn-telco-ocp-run
+stringData:
+  username: root
+  password: calvin
+...
+---
+apiVersion: metal3.io/v1alpha1
+kind: BareMetalHost
+metadata:
+  name: sno01-tn-telco-ocp-run
+  namespace: sno01-tn-telco-ocp-run
+  labels:
+    infraenvs.agent-install.openshift.io: "sno01-tn-telco-ocp-run"
+  annotations:
+    inspect.metal3.io: disabled
+    bmac.agent-install.openshift.io/hostname: "sno01"
+spec:
+  online: true
+  bootMACAddress: "18:66:da:eb:3d:ec"
+  automatedCleaningMode: metadata
+  #rootDeviceHints:
+  #  deviceName: "/dev/sda"
+  bmc:
+    address: idrac-virtualmedia+https://192.168.11.242/redfish/v1/Systems/System.Embedded.1
+    credentialsName: sno4-bmc-secret
+    disableCertificateVerification: true

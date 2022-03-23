@@ -1,0 +1,90 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: policy-podsecuritypolicy
+  namespace: ztp-clusters
+  annotations:
+    policy.open-cluster-management.io/standards: NIST-CSF
+    policy.open-cluster-management.io/categories: PR.PT Protective Technology
+    policy.open-cluster-management.io/controls: PR.PT-3 Least Functionality
+spec:
+  remediationAction: inform
+  disabled: false
+  policy-templates:
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: policy-podsecuritypolicy-restricted-psp
+        spec:
+          remediationAction: inform
+          severity: high
+          namespaceSelector:
+            exclude:
+              - kube-*
+            include:
+              - default
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: policy/v1beta1
+                kind: PodSecurityPolicy
+                metadata:
+                  name: restricted-psp
+                  annotations:
+                    seccomp.security.alpha.kubernetes.io/allowedProfileNames: '*'
+                spec:
+                  privileged: false
+                  allowPrivilegeEscalation: false
+                  allowedCapabilities:
+                    - '*'
+                  volumes:
+                    - '*'
+                  hostNetwork: true
+                  hostPorts:
+                    - min: 1000
+                      max: 65535
+                  hostIPC: false
+                  hostPID: false
+                  runAsUser:
+                    rule: RunAsAny
+                  seLinux:
+                    rule: RunAsAny
+                  supplementalGroups:
+                    rule: RunAsAny
+                  fsGroup:
+                    rule: RunAsAny
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-policy-podsecuritypolicy
+  namespace: ztp-clusters
+placementRef:
+  name: placement-policy-podsecuritypolicy
+  kind: PlacementRule
+  apiGroup: apps.open-cluster-management.io
+subjects:
+  - name: policy-podsecuritypolicy
+    kind: Policy
+    apiGroup: policy.open-cluster-management.io
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: placement-policy-podsecuritypolicy
+  namespace: ztp-clusters
+spec:
+  clusterConditions:
+    - status: 'True'
+      type: ManagedClusterConditionAvailable
+  clusterSelector:
+    matchExpressions:
+      - key: cloud
+        operator: In
+        values:
+          - all
+      - key: standards
+        operator: In
+        values:
+          - nist-csf

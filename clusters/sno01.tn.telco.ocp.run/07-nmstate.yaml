@@ -1,0 +1,36 @@
+apiVersion: agent-install.openshift.io/v1beta1
+kind: NMStateConfig
+metadata:
+  name: sno01-tn-telco-ocp-run
+  namespace: sno01-tn-telco-ocp-run
+  labels:
+    cluster-name: sno01-tn-telco-ocp-run
+spec:
+  config:
+    interfaces:
+      - name: eno1
+        type: ethernet
+        state: up
+        ipv4:
+          enabled: true
+          address:
+            - ip: 192.168.11.60
+              prefix-length: 24
+          dhcp: false
+        ipv6:
+          enabled: false
+    dns-resolver:
+      config:
+        search:
+          - ocp.run
+        server:
+          - 192.168.11.59
+    routes:
+      config:
+        - destination: 0.0.0.0/0
+          next-hop-address: 192.168.11.254
+          next-hop-interface: eno1
+          table-id: 254
+  interfaces:
+    - name: "eno1"
+      macAddress: "18:66:da:eb:3d:ec"

@@ -1,0 +1,25 @@
+---
+apiVersion: agent.open-cluster-management.io/v1
+kind: KlusterletAddonConfig
+metadata:
+  name: sno02
+  namespace: sno02
+spec:
+  applicationManager:
+    argocdCluster: false
+    enabled: true
+  certPolicyController:
+    enabled: true
+  clusterLabels:
+    name: sno02
+    cloud: hybrid
+    vendor: Libvirt
+  clusterName: sno02
+  clusterNamespace: sno02
+  iamPolicyController:
+    enabled: true
+  policyController:
+    enabled: true
+  searchCollector:
+    enabled: true
+  version: 2.2.0

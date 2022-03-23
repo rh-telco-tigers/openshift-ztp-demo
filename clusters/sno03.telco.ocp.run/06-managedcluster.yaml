@@ -1,0 +1,13 @@
+---
+apiVersion: cluster.open-cluster-management.io/v1
+kind: ManagedCluster
+metadata:
+  name: sno03
+  namespace: sno03
+  labels:
+    name: sno03
+    cloud: hybrid
+    cluster-name: 'sno03'
+spec:
+  hubAcceptsClient: true
+  leaseDurationSeconds: 60

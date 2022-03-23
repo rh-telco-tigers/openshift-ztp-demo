@@ -1,0 +1,9 @@
+resources:
+- ocp4736.yaml
+- ocp4802.yaml
+- ocp4805.yaml
+- ocp4817.yaml
+- ocp4905.yaml
+- ocp4908.yaml
+- ocp4919.yaml
+- ocp4.10.0-rc.1-x86_64.yaml

@@ -1,0 +1,12 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  labels:
+    operators.coreos.com/sriov-network-operator.openshift-sriov-network-operator: ""
+  name: sriov-network-operator-subscription
+  namespace: openshift-sriov-network-operator
+spec:
+  channel: "4.8"
+  name: sriov-network-operator
+  source: sriov48-index
+  sourceNamespace: openshift-marketplace

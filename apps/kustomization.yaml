@@ -1,0 +1,6 @@
+resources:
+- clusters
+- releases
+- operators
+- operator-configs
+- governance

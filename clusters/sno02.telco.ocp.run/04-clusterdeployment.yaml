@@ -1,0 +1,27 @@
+---
+apiVersion: hive.openshift.io/v1
+kind: ClusterDeployment
+metadata:
+  name: sno02
+  namespace: sno02
+  # annotations:
+  #   agentBareMetal-agentSelector/autoSelect: "true"
+  labels:
+spec:
+  baseDomain: telco.ocp.run
+  clusterName: sno02
+  controlPlaneConfig:
+    servingCertificates: {}
+  installed: false
+  clusterInstallRef:
+    group: extensions.hive.openshift.io
+    kind: AgentClusterInstall
+    name: sno02
+    version: v1beta1
+  platform:
+    agentBareMetal:
+      agentSelector:
+        matchLabels:
+          cluster-name: "sno02"
+  pullSecretRef:
+    name: pullsecret-cluster-sno02

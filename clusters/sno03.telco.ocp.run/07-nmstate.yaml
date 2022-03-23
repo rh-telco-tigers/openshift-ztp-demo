@@ -1,0 +1,35 @@
+apiVersion: agent-install.openshift.io/v1beta1
+kind: NMStateConfig
+metadata:
+  name: sno03
+  namespace: sno03
+  labels:
+    # agent-install.openshift.io/bmh: sno03
+    cluster-name: sno03
+spec:
+  config:
+    dns-resolver:
+      config:
+        server:
+        - 192.168.7.213
+    interfaces:
+    - ipv4:
+        address:
+        - ip: 192.168.7.12
+          prefix-length: 24
+        dhcp: false
+        enabled: true
+      ipv6:
+        enabled: false
+      name: enp1s0
+      state: up
+      type: ethernet
+    routes:
+      config:
+      - destination: 0.0.0.0/0
+        next-hop-address: 192.168.4.1
+        next-hop-interface: enp1s0
+        table-id: 254
+  interfaces:
+  - macAddress: 00:00:00:00:00:12
+    name: enp1s0

@@ -1,0 +1,20 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: vault-config-operator
+  namespace: vault-config-operator
+  labels:
+    operators.coreos.com/vault-config-operator.vault-config-operator: ''
+spec:
+  channel: alpha
+  installPlanApproval: Automatic
+  name: vault-config-operator
+  source: community-operators
+  sourceNamespace: openshift-marketplace
+  startingCSV: vault-config-operator.v0.3.1
+  config:
+    env:
+    - name: VAULT_ADDR
+      value: "http://vault-server-internal.vault:8200"
+    - name: VAULT_TOKEN
+      value: "s.tqN1UqGPJjtZKzILimuV7PfX"

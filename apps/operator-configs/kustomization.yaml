@@ -1,0 +1,3 @@
+resources:
+- 00-performance-addon-operator-config.yaml
+- 01-external-secret-operator-config.yaml

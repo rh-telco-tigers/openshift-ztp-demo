@@ -1,0 +1,27 @@
+---
+apiVersion: extensions.hive.openshift.io/v1beta1
+kind: AgentClusterInstall
+metadata:
+  name: sno01
+  namespace: sno01
+  annotations:
+    agent-install.openshift.io/install-config-overrides: '{"networking":{"networkType":"OVNKubernetes"}}'
+spec:
+  clusterDeploymentRef:
+    name: sno01
+  imageSetRef:
+    name: 'img4.9.9-x86-64-appsub'
+  networking:
+    clusterNetwork:
+    - cidr: 10.128.0.0/14
+      hostPrefix: 23
+    serviceNetwork:
+    - 172.30.0.0/16
+    machineNetwork:
+      - cidr: "192.168.4.0/22"
+  provisionRequirements:
+    controlPlaneAgents: 1
+    workerAgents: 0
+  sshPublicKey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCfjdWVDxtNZW5Mrb3lxfmison8iWG/diFyORcV7yKbPgzUQwk29GBbYjjR2RN5i/8Dud+SjZMGGZZtCLVO9uivHtfViC0Nu+vcTuFHgSOf/4aHxH2mYa5VYgwpAP5Ov/2lKkibM1CoF+noPdh+Gl8Izhc4ZTlNjOhG7jpVVgnd4WoK0tX5AiJ3fz3WYcDzZ4yQBNa/J43HP64l/6PX3CzgNGBVSbBHukYyzYHkIuFvSYPgnNW+dLrDx+uDypvnjYV5lYh+9jrW3lzMwiNQSzdDO30I6jupr8A05jtD5zA4maJDwUkAtcHVxc5Z2KEXlh7xWurES4amzScsHFSx3r2/NgzjD96h22BmPLN/tbZ19n21Bsb774b+vw0L471FFbsgkmiOYQcyNqcySFmeozsWixjxN2tG1VfqnH8pR189IYOX9e4YOHvYYV/5NzLjwIj2uLfGtqBOMdBGbMGyR/VeYyg9sz1nQ3mqs/sYo3OB0j+4TZeI9uJB4NZKoN4RjOc= stack@osp.home.lab"
+
+

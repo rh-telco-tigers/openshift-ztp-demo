@@ -1,0 +1,10 @@
+resources:
+  - policy-podsecuritypolicy.yaml
+  - policy-limitrange.yaml
+  - policy-certificatepolicy.yaml
+  - policy-iampolicy-namespace.yaml
+  - policy-namespace.yaml
+  - policy-role.yaml
+  - policy-complianceoperator.yaml
+  - policy-openshift-gitops-operator.yaml
+

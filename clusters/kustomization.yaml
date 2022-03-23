@@ -1,0 +1,5 @@
+resources:
+- hub.telco.ocp.run
+- sno01.telco.ocp.run
+- sno02.telco.ocp.run
+- sno03.telco.ocp.run

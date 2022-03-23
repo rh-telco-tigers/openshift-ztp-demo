@@ -1,0 +1,8 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: vault-token
+  namespace: vault
+data:
+  token: cy50cU4xVXFHUEpqdFpLeklMaW11VjdQZlg=

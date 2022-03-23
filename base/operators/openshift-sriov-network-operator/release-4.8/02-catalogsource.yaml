@@ -1,0 +1,9 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: sriov48-index
+  namespace: openshift-marketplace
+spec:
+  displayName: Openshift SRIOV Operator 4.8
+  image: quay.io/alosadag/alosadag-ocp4-index:latest
+  sourceType: grpc

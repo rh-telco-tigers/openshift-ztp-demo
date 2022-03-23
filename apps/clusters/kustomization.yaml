@@ -1,0 +1,4 @@
+resources:
+- sno01.telco.ocp.run.yaml
+- sno02.telco.ocp.run.yaml
+- sno03.telco.ocp.run.yaml
